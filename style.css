@@ -1,27 +1,69 @@
-.button {
-    text-align: center;
-}
-h1 {
-    text-align: center;
-    font-family: 'Modak', cursive;
+/*the universal selector * does not affect pseudo-elements
+pseudo-elements are typically generated as children of actual elements*/
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  font-weight: normal;
 }
 
-legend{
-    font-family: 'Modak', cursive;
-}
-.container {
-    display: flex;
-    height: 200px;
-    align-content: center;
-    margin-left: 270px;
-    margin-top: 100px;
-}
-.container > #KEY {
-align-self: center;
-}
 body {
-    padding: 0;
-    margin: 0;
-    background: linear-gradient(to right, #00AAFF, #00FF6C);
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #00AAFF, #00FF6C);
+}
 
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+
+/*if we input a large number the size of the div will grow as the size of the number 
+minmax  serve to that and auto means as larger as it need to be it will fill everything*/}
+
+.calculator-grid > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  /*the outline is added by default by browser so we remove it*/
+  background-color: rgba(255, 255, 255, .75);
+  
+}
+
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, .9);
+  /* hover will style when the user move the mouse over it */
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.output {
+  grid-column: 1 / -1;
+  /*grid property allow to define the size and location of an element on the grid
+ indicating the location of the start , and the end*/
+  background-color: rgba(0, 0, 0, .75);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  /*wrap when the number get bigger*/
+  word-break: break-all;
+}
+
+.output .previous-operand {
+  color: rgba(255, 255, 255, .75);
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
+  /*to make a different look of the current operation*/
 }
